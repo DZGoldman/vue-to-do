@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header v-bind:length="length"/>
+    <ToDoList @length-update='updateLength'/>
+   
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+window.globalId = 1
+window.updateGlobalId = ()=>{
+  return window.globalId ++ 
+}
+import Header from './components/Header.vue'
+import ToDoList from './components/ToDoList.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Header, ToDoList
+  },
+  data: ()=>(
+    {length: 2}
+  ),
+  methods: {
+    updateLength(newLength){
+      this.length = newLength
+    }
   }
 }
 </script>
